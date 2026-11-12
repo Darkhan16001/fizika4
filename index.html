@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#eaf7ff">
+  <title>PHYSICS LAB | Беттік керілу және капиллярлық құбылыстар</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">⚛</span>
+      <div>
+        <strong>PHYSICS LAB</strong>
+        <small>2.4.2 • Беттік керілу, капилляр және кристалдар</small>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="chip">ФИЗИКА • 1-КУРС</span>
+      <div class="timer-box">
+        САБАҚ ТАЙМЕРІ
+        <strong id="timer">00:00</strong>
+      </div>
+    </div>
+  </header>
+
+  <main id="screen"></main>
+
+  <footer class="toolbar">
+    <div class="live-clock">
+      <span>ҚАЗІРГІ УАҚЫТ • АЛМАТЫ</span>
+      <strong id="currentTime">--:--:--</strong>
+    </div>
+
+    <div class="page-info">
+      <span id="pageNumber">1 / 1</span>
+      <div class="progress">
+        <div id="progressFill"></div>
+      </div>
+    </div>
+
+    <nav class="actions">
+      <button onclick="openAttendance()">👥 Оқушылар</button>
+      <button onclick="openTeams()">🏆 Командалар</button>
+      <button onclick="openPanel('mathPanel')">🧮 Математика</button>
+      <button onclick="openPanel('physicsPanel')">⚡ Физика</button>
+      <button onclick="changePage(-1)">← Артқа</button>
+      <button class="primary" onclick="changePage(1)">Келесі →</button>
+    </nav>
+  </footer>
+</div>
+
+<!-- ҚАТЫСУ ТІЗІМІ -->
+<section id="attendancePanel" class="floating wide hidden">
+  <div class="panel-head">
+    <strong>👥 Сабаққа қатысу</strong>
+    <button onclick="closePanel('attendancePanel')">✕</button>
+  </div>
+
+  <p class="hint">
+    Келген оқушыларды белгілеңіз.
+    Командалар тек келген оқушылардан құралады.
+  </p>
+
+  <div class="small-actions">
+    <button onclick="markAll(true)">Барлығы бар</button>
+    <button onclick="markAll(false)">Барлығы жоқ</button>
+  </div>
+
+  <div id="attendanceList" class="student-list"></div>
+
+  <div class="add-row">
+    <input id="newStudent" maxlength="50"
+           placeholder="Оқушының есімі">
+    <button onclick="addStudent()">Қосу</button>
+  </div>
+
+  <p id="attendanceCount" class="hint"></p>
+
+  <button class="primary full" onclick="shuffleTeams(true)">
+    🎲 3 командаға автоматты бөлу
+  </button>
+</section>
+
+<!-- КОМАНДАЛАР -->
+<section id="teamsPanel" class="floating wide hidden">
+  <div class="panel-head">
+    <strong>🏆 Командалар және ұпайлар</strong>
+    <button onclick="closePanel('teamsPanel')">✕</button>
+  </div>
+
+  <div id="teamLists"></div>
+
+  <button class="primary full" onclick="shuffleTeams(true)">
+    🎲 Қайта араластыру
+  </button>
+</section>
+
+<!-- МАТЕМАТИКАЛЫҚ КАЛЬКУЛЯТОР -->
+<section id="mathPanel" class="floating hidden">
+  <div class="panel-head">
+    <strong>🧮 Математикалық калькулятор</strong>
+    <button onclick="closePanel('mathPanel')">✕</button>
+  </div>
+
+  <input id="mathDisplay" readonly
+         placeholder="Өрнекті енгізіңіз">
+
+  <div id="mathKeys" class="math-keys"></div>
+  <div id="mathResult" class="calc-result">Нәтиже</div>
+
+  <p class="hint">sin, cos, tan — градуспен.</p>
+</section>
+
+<!-- ФИЗИКАЛЫҚ КАЛЬКУЛЯТОР -->
+<section id="physicsPanel"
+         class="floating physics-panel hidden">
+  <div class="panel-head">
+    <strong>⚡ Физикалық калькулятор</strong>
+    <button onclick="closePanel('physicsPanel')">✕</button>
+  </div>
+
+  <label for="formulaSelect">Формула</label>
+  <select id="formulaSelect"
+          onchange="selectFormula()"></select>
+
+  <label for="unknownSelect">Табылатын шама</label>
+  <select id="unknownSelect"
+          onchange="drawPhysicsFields()"></select>
+
+  <div id="physicsFields"></div>
+
+  <button class="primary full" onclick="calculatePhysics()">
+    Есептеу
+  </button>
+
+  <div id="physicsResult" class="calc-result">
+    Формуланы таңдаңыз.
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,680 @@
+
+:root{
+  --ink:#163b59;
+  --blue:#077bcc;
+  --green:#15814e;
+  --red:#cd3750;
+  --gold:#a66e05;
+  --line:#c6dfee;
+  --shadow:0 12px 32px rgba(16,89,145,.13);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  margin:0;
+}
+
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 6% 13%,#c6eaff,transparent 40%),
+    radial-gradient(circle at 95% 81%,#cff5e7,transparent 39%),
+    radial-gradient(circle at 50% 95%,#e2efff,transparent 45%),
+    repeating-linear-gradient(
+      0deg,transparent 0 49px,#2282cd0b 50px
+    ),
+    repeating-linear-gradient(
+      90deg,transparent 0 49px,#2282cd0b 50px
+    ),
+    #f8fcff;
+}
+
+body::before{
+  content:"H₂O";
+  position:fixed;
+  top:18%;
+  right:5%;
+  font-size:210px;
+  font-weight:900;
+  color:#077bcc0a;
+  pointer-events:none;
+}
+
+button,input,select{font:inherit}
+
+button{
+  padding:12px 16px;
+  border:1px solid #b6d9eb;
+  border-radius:12px;
+  background:#e8f5ff;
+  color:#155e8e;
+  font-size:17px;
+  font-weight:750;
+  cursor:pointer;
+}
+
+button:hover{background:#cae9ff}
+button:disabled{cursor:default;opacity:.74}
+
+.primary{
+  background:#087dcc;
+  border-color:#087dcc;
+  color:white;
+}
+
+.primary:hover{background:#0869ad}
+.full{width:100%;margin-top:12px}
+.hidden{display:none!important}
+
+/* Негізгі интерфейс */
+
+.app{
+  position:relative;
+  z-index:1;
+  height:100dvh;
+  display:flex;
+  flex-direction:column;
+}
+
+.topbar{
+  min-height:80px;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:12px 25px;
+  background:#fffffff5;
+  border-bottom:1px solid var(--line);
+}
+
+.brand,.header-right{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.logo{font-size:45px;color:var(--blue)}
+
+.brand strong{
+  display:block;
+  font-size:25px;
+  letter-spacing:1.3px;
+  color:var(--blue);
+}
+
+.brand small{
+  display:block;
+  margin-top:5px;
+  font-size:16px;
+  color:#65849a;
+}
+
+.chip{
+  padding:11px 16px;
+  background:#e8f5ff;
+  color:#4c83a2;
+  border-radius:40px;
+  font-weight:850;
+  font-size:15px;
+}
+
+.timer-box{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:7px 16px;
+  background:#e1f7eb;
+  border-radius:12px;
+  color:#418568;
+  font-size:12px;
+  font-weight:850;
+}
+
+.timer-box strong{
+  color:var(--green);
+  font-size:24px;
+  font-variant-numeric:tabular-nums;
+}
+
+main{
+  flex:1;
+  min-height:0;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px 32px;
+}
+
+.slide{
+  width:100%;
+  max-width:1430px;
+  max-height:100%;
+  overflow-y:auto;
+  scrollbar-width:thin;
+  margin:auto;
+  padding:6px 9px 22px;
+}
+
+h1{
+  font-size:clamp(35px,3.8vw,57px);
+  line-height:1.2;
+  margin:15px 0 27px;
+}
+
+h2{
+  font-size:clamp(30px,3vw,44px);
+  line-height:1.2;
+  margin:13px 0 25px;
+}
+
+h3{
+  font-size:clamp(23px,2vw,31px);
+  margin:10px 0 17px;
+}
+
+.slide p,.slide li{
+  font-size:clamp(21px,1.75vw,28px);
+  line-height:1.6;
+  margin:13px 0 21px;
+}
+
+.eyebrow{
+  font-size:19px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  color:var(--blue);
+}
+
+.card{
+  background:#fffffff7;
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:29px 34px;
+  margin:20px 0;
+  box-shadow:var(--shadow);
+}
+
+.grid2,.grid3{
+  display:grid;
+  gap:20px;
+}
+
+.grid2{grid-template-columns:repeat(2,1fr)}
+.grid3{grid-template-columns:repeat(3,1fr)}
+
+.green{color:var(--green);font-weight:800}
+.blue{color:var(--blue);font-weight:800}
+.red{color:var(--red);font-weight:800}
+.gold{color:var(--gold);font-weight:800}
+
+.definition,.example,.warning{
+  padding:19px 24px;
+  border-radius:15px;
+  margin:19px 0;
+}
+
+.definition{
+  background:#e7faf1;
+  border-left:6px solid #28af7b;
+}
+
+.example{
+  background:#fff8e3;
+  border-left:6px solid #e6b647;
+}
+
+.warning{
+  background:#fff0f3;
+  border-left:6px solid #e16276;
+}
+
+/* Формулалардың индекстері */
+.formula{
+  background:linear-gradient(120deg,#e4f3ff,#f8fcff);
+  border:1px solid #b9daf3;
+  border-radius:17px;
+  padding:23px;
+  margin:22px 0;
+  text-align:center;
+  color:#086fba;
+  font-size:clamp(29px,2.9vw,45px);
+  font-weight:900;
+  line-height:1.6;
+  overflow-wrap:anywhere;
+}
+
+.formula sub,.formula sup{
+  font-size:.56em;
+  line-height:0;
+}
+
+.frac{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:center;
+  vertical-align:middle;
+  font-size:.86em;
+  line-height:1.15;
+}
+
+.frac>span:first-child{
+  border-bottom:2px solid currentColor;
+  padding:0 9px 5px;
+}
+
+.frac>span:last-child{
+  padding:5px 9px 0;
+}
+
+/* Фото және көрнекіліктер */
+.photo-layout{
+  display:grid;
+  grid-template-columns:40% 1fr;
+  gap:25px;
+  align-items:center;
+}
+
+.visual{
+  padding:16px;
+  background:#edf7ff;
+  border:1px solid #b8dbef;
+  border-radius:18px;
+  text-align:center;
+}
+
+.visual img{
+  display:block;
+  width:100%;
+  max-height:270px;
+  object-fit:contain;
+  border-radius:14px;
+}
+
+.visual svg{
+  display:block;
+  width:100%;
+  max-height:260px;
+}
+
+.caption{
+  font-size:15px!important;
+  line-height:1.45!important;
+  color:#64839b!important;
+  margin:9px 0!important;
+}
+
+/* Конспект */
+.notebook-item{
+  background:white;
+  border:1px solid #cde1ed;
+  border-left:7px solid #d69aa5;
+  border-radius:19px;
+  padding:26px 32px;
+  margin:21px 0;
+  box-shadow:var(--shadow);
+}
+
+.notebook-number{
+  font-size:23px;
+  font-weight:900;
+  color:var(--blue);
+  margin-bottom:16px;
+}
+
+/* Дәптер есептері */
+.level{
+  display:inline-block;
+  padding:12px 21px;
+  border-radius:50px;
+  font-size:22px;
+  font-weight:900;
+}
+
+.easy{background:#d9f8e8;color:#0d7842}
+.medium{background:#fff0c6;color:#946100}
+.hard{background:#ffe1e7;color:#b02a44}
+
+.problem{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:21px;
+  padding:26px 32px;
+  margin:21px 0;
+  box-shadow:var(--shadow);
+}
+
+.problem-title{font-weight:750}
+
+.data-line{
+  background:#edf7ff;
+  border-radius:12px;
+  padding:15px 19px;
+  margin:13px 0;
+  font-size:21px;
+}
+
+.answer{
+  white-space:pre-line;
+  background:#e0f8eb;
+  border:1px solid #a1ddbb;
+  padding:19px 23px;
+  margin-top:18px;
+  border-radius:13px;
+  font-size:22px;
+  line-height:1.65;
+}
+
+/* Командалық ойын */
+.team-turn{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:20px 0;
+}
+
+.turn-pill{
+  padding:12px 18px;
+  border-radius:40px;
+  background:#eaf5ff;
+  border:1px solid #c9dfef;
+  font-size:19px;
+  font-weight:800;
+}
+
+.turn-pill.active{
+  color:white;
+  background:var(--blue);
+}
+
+.player-banner{
+  padding:20px 25px;
+  border-radius:18px;
+  margin:20px 0;
+  border:2px solid #a4d5ee;
+  background:#e5f4ff;
+}
+
+.player-banner strong{
+  color:var(--blue);
+  font-size:28px;
+}
+
+.quiz-question{
+  font-weight:850!important;
+  font-size:clamp(29px,2.65vw,41px)!important;
+}
+
+.choices{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:17px;
+  margin:22px 0;
+}
+
+.choice{
+  text-align:left;
+  min-height:92px;
+  padding:21px;
+  background:#f9fcff;
+  border:2px solid #c9dfec;
+  font-size:clamp(21px,1.7vw,27px);
+}
+
+.choice.correct{
+  background:#c4f2d5;
+  color:#0b633a;
+  border-color:#2eae70;
+}
+
+.choice.wrong{
+  background:#ffe1e7;
+  color:#a92d44;
+  border-color:#e36b81;
+}
+
+.team-card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:19px;
+  padding:24px;
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+}
+
+.team-card p{font-size:20px}
+
+.score{
+  color:var(--green);
+  font-size:45px;
+  font-weight:900;
+}
+
+/* Төменгі панель және нақты уақыт */
+.toolbar{
+  flex-shrink:0;
+  min-height:94px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:#fffffff5;
+  border-top:1px solid var(--line);
+  padding:8px 15px;
+}
+
+.live-clock{
+  flex-shrink:0;
+  min-width:174px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:8px 12px;
+  border:2px solid #acd9f3;
+  border-radius:15px;
+  background:#e5f5ff;
+}
+
+.live-clock span{
+  font-size:12px;
+  font-weight:850;
+  color:#427fa6;
+}
+
+.live-clock strong{
+  color:var(--blue);
+  font-size:29px;
+  font-weight:900;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+
+.page-info{
+  min-width:105px;
+  color:#668198;
+}
+
+.progress{
+  background:#dcebf5;
+  height:8px;
+  border-radius:20px;
+  margin-top:10px;
+  overflow:hidden;
+}
+
+#progressFill{
+  width:0;
+  height:100%;
+  background:linear-gradient(90deg,#138ddd,#31c596);
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  gap:7px;
+}
+
+/* Еркін қозғалатын терезелер */
+.floating{
+  position:fixed;
+  top:95px;
+  right:24px;
+  width:375px;
+  max-width:calc(100vw - 18px);
+  max-height:81dvh;
+  overflow:auto;
+  z-index:100;
+  padding:18px;
+  background:white;
+  border:2px solid #86c0e7;
+  border-radius:19px;
+  box-shadow:0 22px 67px #11487559;
+}
+
+.floating.wide{width:500px}
+.floating.physics-panel{width:440px}
+
+.panel-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:11px;
+  padding-bottom:14px;
+  margin-bottom:14px;
+  border-bottom:1px solid var(--line);
+  cursor:grab;
+  user-select:none;
+  touch-action:none;
+}
+
+.panel-head strong{
+  color:var(--blue);
+  font-size:20px;
+}
+
+.panel-head button{padding:7px 11px}
+
+.floating label{
+  display:block;
+  font-size:17px;
+  font-weight:800;
+}
+
+.floating input,.floating select{
+  display:block;
+  width:100%;
+  margin:9px 0 15px;
+  padding:13px;
+  font-size:18px;
+  border:1px solid #bcd8e9;
+  border-radius:11px;
+  background:#f5fbff;
+}
+
+.math-keys{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.math-keys button{padding:13px 4px}
+
+.calc-result{
+  padding:16px;
+  margin:15px 0;
+  border-radius:12px;
+  background:#e7f8ee;
+  font-size:19px;
+  line-height:1.7;
+  white-space:pre-line;
+  overflow-wrap:anywhere;
+}
+
+.hint{
+  font-size:16px;
+  color:#637f98;
+  line-height:1.5;
+}
+
+.small-actions{
+  display:flex;
+  gap:9px;
+  margin:14px 0;
+}
+
+.student-list{
+  max-height:35vh;
+  overflow:auto;
+}
+
+.student-row{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:10px 0;
+  border-bottom:1px solid #e2edf4;
+}
+
+.student-row input{
+  width:22px;
+  height:22px;
+  margin:0;
+}
+
+.student-row span{
+  flex:1;
+  font-size:19px;
+}
+
+.student-row button{
+  font-size:14px;
+  padding:7px 10px;
+}
+
+.add-row{
+  display:flex;
+  gap:9px;
+  margin-top:15px;
+}
+
+.add-row input{min-width:0;margin:0}
+
+@media(max-width:1160px){
+  .page-info{display:none}
+  .actions button{font-size:13px;padding:9px}
+  .live-clock{min-width:145px}
+  .live-clock strong{font-size:24px}
+}
+
+@media(max-width:780px){
+  .topbar{padding:8px 12px}
+  .brand strong{font-size:19px}
+  .chip{display:none}
+  main{padding:10px}
+  .grid2,.grid3,.photo-layout,.choices{
+    grid-template-columns:1fr;
+  }
+  .card,.problem{padding:17px}
+  .slide p,.slide li{font-size:21px}
+  .toolbar{
+    overflow-x:auto;
+    justify-content:flex-start;
+  }
+  .actions{
+    flex-wrap:nowrap;
+    min-width:max-content;
+  }
+  .actions button{white-space:nowrap}
+  .live-clock{
+    position:sticky;
+    left:0;
+    z-index:2;
+  }
+}
